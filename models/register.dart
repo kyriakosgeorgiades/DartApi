@@ -1,24 +1,25 @@
+import '../auth/hashing.dart';
 import "../database/connection.dart";
-import 'package:mysql1/mysql1.dart';
-import 'dart:async';
 
+class RegisterModel {
+  addNew(String username, String password) async {
+    try {
+      var security = new Hashing();
+      var salt = security.salt();
+      var newPass = security.hashed(password);
+      // ignore: unnecessary_new
+      var db = new Mysql();
+      dynamic conn = await db.getConnection();
+      var result = await conn.query(
+          'INSERT INTO users (username, pass, salt) VALUES(?,?,?)',
+          [username, newPass, salt]);
+      conn.close();
+      print(result);
 
-class RegisterModel{
-    
-    
-    addNew(String username, String password) async{
-        print(username);
-        print(password);
-        var db =  new Mysql();
-        dynamic conn = await db.getConnection();
-        print("after con");
-        var results =  await conn.query('select * from users');
-        for (var row in results){
-            print('${row[0]}');
-        }
-        // var result =  await conn.query('INSERT INTO users (username, password, salt) VALUES(?,?,?)',['Kakos','123','1551']);          
-        // print(result);
-        print("INSIDE THE MODEL");
-        return results;
+      return "User has been added succesfully";
+    } catch (e) {
+      print(e);
+      return e;
     }
+  }
 }
