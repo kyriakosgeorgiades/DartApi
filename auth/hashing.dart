@@ -12,9 +12,11 @@ class Hashing {
     return base64Url.encode(saltGen);
   }
 
-  String hashed(String password) {
-    final newPass = Crypt.sha512(password, rounds: 10000, salt: salt());
-    print("The new password is ${newPass}");
+  String hashed(String password, String salt) {
+    final newPass = Crypt.sha512(password, rounds: 10000, salt: salt);
     return newPass.toString();
   }
+
+  bool isValid(String cryptFormatHash, String enteredPassword) =>
+      Crypt(cryptFormatHash).match(enteredPassword);
 }
