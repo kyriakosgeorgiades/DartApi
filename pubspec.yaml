@@ -10,5 +10,8 @@ dependencies:
   shelf_router: any
   shelf_static: any
   mysql1: any
+  crypt: ^4.2.1
+  jaguar_jwt: any
+
 dev_dependencies: 
   lints: ^1.0.1
