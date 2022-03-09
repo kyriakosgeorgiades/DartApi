@@ -7,6 +7,8 @@ import 'dart:io' show InternetAddress;
 import 'package:shelf/shelf.dart' show Pipeline, Request, Response, logRequests;
 import 'package:shelf/shelf_io.dart' show serve;
 import 'package:shelf_router/shelf_router.dart' show Router;
+import 'routes/games.dart';
+import 'routes/home.dart';
 import 'routes/login.dart';
 import 'routes/register.dart';
 import 'routes/test.dart';
@@ -17,6 +19,8 @@ void main() async {
   app.mount('/register', Register().router);
   app.mount('/test', Test().router);
   app.mount('/login', Login().router);
+  app.mount('/games', Games().router);
+  app.mount('/home', Home().router);
   final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(handleCors())
