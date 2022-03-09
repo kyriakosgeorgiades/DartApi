@@ -9,8 +9,7 @@ class RegisterModel {
       var security = Hashing();
       var salt = security.salt();
       var newPass = security.hashed(password, salt);
-      // ignore: unnecessary_new
-      var db = new Mysql();
+      var db = Mysql();
       dynamic conn = await db.getConnection();
       await conn.query('INSERT INTO users (username, pass, salt) VALUES(?,?,?)',
           [username, newPass, salt]);

@@ -13,16 +13,26 @@ class Login {
         final payload = await request.readAsString();
         var data = json.decode(payload);
         var log = LoginModel();
+        // Checking if passwords match with inputpassword
+        // Returning response based on match case
         var result = await log.logIn(data['username'], data['password']);
-        var jwt = JWT();
-        var token = jwt.signToken(result[2]);
-        Map<String, dynamic> dataResponse = {
-          'id': result[2],
-          'username': result[3],
-          'token': token,
-          'message': result[0]
-        };
-        int statusCode = result[1];
+        int statusCode = result['statusCode'];
+        Map<String, dynamic> dataResponse = {};
+        // Mathced preparing the map data to be encoded json
+        if (statusCode == 200) {
+          // Creating the JWT for auth
+          var jwt = JWT();
+          var token = jwt.signToken(result['id']);
+          dataResponse = {
+            'id': result['id'],
+            'username': result['userName'],
+            'token': token,
+            'message': result['message']
+          };
+          // Failed to login just retuning a message to inform user
+        } else if (statusCode == 401) {
+          dataResponse = {'message': result['message']};
+        }
 
         String jsonData = jsonEncode(dataResponse);
         return Response(statusCode,
