@@ -19,23 +19,22 @@ class GamesModel {
       print(addedBy);
       result =
           await conn.query('select * from games where game_name=?', [name]);
-      List<dynamic> info = [];
-      info.clear();
+      Map<String, dynamic> info = {};
       for (var row in result) {
-        info.add(row[0]);
-        info.add(row[1]);
-        info.add(row[2]);
-        info.add(row[3]);
-        info.add(row[4]);
-        info.add(row[5]);
-        info.add(row[6]);
+        String date = row[6].toString();
+        date = date.substring(0, 16);
+        info.addAll({
+          'message': 'Game sucessfully added',
+          'id': row[0],
+          'name': row[1],
+          'cover': row[2].toString(),
+          'publisher': row[3],
+          'year': row[4],
+          'description': row[5],
+          'added': date,
+          'addedBy': addedBy
+        });
       }
-
-      info.add(addedBy);
-      print("I AM INFO LIST STILL");
-      print(info);
-      print("END");
-
       conn.close();
       return info;
     } catch (e) {

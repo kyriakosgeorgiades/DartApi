@@ -8,18 +8,14 @@ class LoginModel {
       dynamic conn = await db.getConnection();
       var results = await conn.query(
           'select id,username,pass from users where username = ?', [username]);
-      String shaPass;
-      String userName;
-      int id;
+      Map<String, dynamic> info = {};
       for (var row in results) {
-        id = row[0];
-        userName = row[1];
-        shaPass = row[2];
+        info.addAll({'id': row[0], 'userName': row[1], 'shaPass': row[2]});
       }
-      int statusCode = 0;
+      int statusCode;
       String result;
       var security = Hashing();
-      bool doesMatch = security.isValid(shaPass, password);
+      bool doesMatch = security.isValid(info['shaPass'], password);
       if (doesMatch) {
         result = "Credentials match!";
         statusCode = 200;
@@ -27,8 +23,10 @@ class LoginModel {
         result = "Wrong username or password";
         statusCode = 401;
       }
+      
+      info.addAll({'message': result, 'statusCode': statusCode});
 
-      return [result, statusCode, id, userName];
+      return info;
     } catch (e) {
       print(e);
       return e;
