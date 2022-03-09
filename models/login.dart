@@ -16,12 +16,8 @@ class LoginModel {
         userName = row[1];
         shaPass = row[2];
       }
-      print("I AM");
-      print(id);
-      print(userName);
-      print(shaPass);
       int statusCode = 0;
-      var result = '';
+      String result;
       var security = Hashing();
       bool doesMatch = security.isValid(shaPass, password);
       if (doesMatch) {

@@ -31,10 +31,7 @@ Middleware handleAuth() {
       if (authHeader != null && authHeader.startsWith('Bearer ')) {
         token = authHeader.substring(7);
         jwt = isValidToken(token);
-        print("I AM INSIDE THE HANDLE LOL");
-        print(jwt);
       }
-      print(jwt);
       final updateRequest = request.change(context: {
         'tokenValidation': jwt,
       });
@@ -46,7 +43,6 @@ Middleware handleAuth() {
 Middleware checkAuthorisation() {
   return createMiddleware(
     requestHandler: (Request request) {
-      print("BEFORE IF");
       if (request.context['tokenValidation'] == false) {
         return Response.forbidden('Not authorised for this action');
       } else {
