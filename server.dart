@@ -15,13 +15,10 @@ void main() async {
   const _hostname = '0.0.0.0';
   final port = int.parse(Platform.environment['PORT'] ?? '8085');
 
-
-
-
   app.get('/', (Request reques) async {
     String json = jsonEncode({
-      'users': 'http://localhost:8080/users/',
-      'games': 'http://localhost:8080/games'
+      'users': 'https://games-reviews-coursework.herokuapp.com/users/',
+      'games': 'https://games-reviews-coursework.herokuapp.com/games/'
     });
     return Response.ok(json);
   });
