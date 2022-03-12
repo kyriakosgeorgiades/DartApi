@@ -1,6 +1,4 @@
 .packages
 .dart_tool
-
-./config.dart
 .vscode
 config.dart
