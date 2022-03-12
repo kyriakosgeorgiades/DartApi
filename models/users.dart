@@ -42,6 +42,7 @@ class UserModel {
           'statusCode': 201
         });
       }
+      conn.close();
 
       return dataResponse;
     } on MySqlException catch (e) {
@@ -76,6 +77,7 @@ class UserModel {
       for (var row in results) {
         info.addAll({'id': row[0], 'userName': row[1], 'shaPass': row[2]});
       }
+      conn.close();
       int statusCode;
       String result;
       var security = Hashing();
