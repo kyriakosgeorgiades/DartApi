@@ -1,7 +1,10 @@
+/// This file is for the creating of Middlewares
+
 import 'package:shelf/shelf.dart';
 
-import 'auth/jwt.dart';
+import 'jwt.dart';
 
+// Middleware for CORS permissions
 Middleware handleCors() {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -22,6 +25,7 @@ Middleware handleCors() {
   );
 }
 
+// Middleware to handle the authorization on each new request using JWT
 Middleware handleAuth() {
   return (Handler innerHandler) {
     return (Request request) async {
@@ -32,6 +36,7 @@ Middleware handleAuth() {
         token = authHeader.substring(7);
         jwt = isValidToken(token);
       }
+      // Setting the status of the validation of the user
       final updateRequest = request.change(context: {
         'tokenValidation': jwt,
       });
@@ -40,12 +45,18 @@ Middleware handleAuth() {
   };
 }
 
+// Middleware to force authorization on a specific method
 Middleware checkAuthorisation() {
   return createMiddleware(
     requestHandler: (Request request) {
-      if (request.context['tokenValidation'] == false) {
+      // For the required methods a header of 'authcheck' is required to be of
+      // value 'needAuth' and a valid token to carry on with the specific
+      // requested method
+      if (request.context['tokenValidation'] == false &&
+          request.headers['authcheck'] == 'needAuth') {
         return Response.forbidden('Not authorised for this action');
       } else {
+        // NULL means that is okay to carry on down to the pipeline
         return null;
       }
     },

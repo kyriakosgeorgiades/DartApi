@@ -12,6 +12,7 @@ dependencies:
   mysql1: any
   crypt: ^4.2.1
   jaguar_jwt: any
+  jwt_decoder: ^2.0.1
 
 dev_dependencies: 
   lints: ^1.0.1
