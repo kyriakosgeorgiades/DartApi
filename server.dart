@@ -11,8 +11,8 @@ import 'auth/utils.dart';
 void main() async {
   final app = Router();
   const _hostname = '0.0.0.0';
-  //final port = int.parse(Platform.environment['PORT'] ?? '8080');
-  final port = process.env.PORT;
+  final port = int.parse(Platform.environment['PORT'] ?? '8085');
+
   app.get('/', (Request reques) async {
     String json = jsonEncode({
       'users': 'http://localhost:8080/users/',
@@ -30,7 +30,7 @@ void main() async {
   final server = await serve(
     handler,
     _hostname,
-    8080,
+    port,
   );
 
   print('Serving at http://${server.address.host}:${server.port}');
