@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io' show InternetAddress;
+import 'dart:io' show InternetAddress, Platform;
 
 import 'package:shelf/shelf.dart' show Pipeline, Request, Response, logRequests;
 import 'package:shelf/shelf_io.dart' show serve;
@@ -11,6 +11,8 @@ import 'auth/utils.dart';
 void main() async {
   final app = Router();
   const _hostname = '0.0.0.0';
+  //final port = int.parse(Platform.environment['PORT'] ?? '8080');
+  final port = process.env.PORT;
   app.get('/', (Request reques) async {
     String json = jsonEncode({
       'users': 'http://localhost:8080/users/',
