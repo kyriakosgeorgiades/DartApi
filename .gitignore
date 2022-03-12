@@ -4,3 +4,4 @@
 ./config.dart
 .vscode
 config.dart
+.env
