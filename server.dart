@@ -1,26 +1,24 @@
-/* server.dart */
-
-/* query strings example */
-
+import 'dart:convert';
 import 'dart:io' show InternetAddress;
 
 import 'package:shelf/shelf.dart' show Pipeline, Request, Response, logRequests;
 import 'package:shelf/shelf_io.dart' show serve;
 import 'package:shelf_router/shelf_router.dart' show Router;
 import 'routes/games.dart';
-import 'routes/home.dart';
-import 'routes/login.dart';
-import 'routes/register.dart';
-import 'routes/test.dart';
-import 'utils.dart';
+import 'routes/users.dart';
+import 'auth/utils.dart';
 
 void main() async {
   final app = Router();
-  app.mount('/register', Register().router);
-  app.mount('/test', Test().router);
-  app.mount('/login', Login().router);
+  app.get('/', (Request reques) async {
+    String json = jsonEncode({
+      'users': 'http://localhost:8080/users/',
+      'games': 'http://localhost:8080/games'
+    });
+    return Response.ok(json);
+  });
   app.mount('/games', Games().router);
-  app.mount('/home', Home().router);
+  app.mount('/users', User().router);
   final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(handleCors())
