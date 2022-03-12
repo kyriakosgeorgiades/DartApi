@@ -10,6 +10,7 @@ import 'auth/utils.dart';
 
 void main() async {
   final app = Router();
+  const _hostname = '0.0.0.0';
   app.get('/', (Request reques) async {
     String json = jsonEncode({
       'users': 'http://localhost:8080/users/',
@@ -26,7 +27,7 @@ void main() async {
       .addHandler(app);
   final server = await serve(
     handler,
-    InternetAddress.anyIPv4,
+    _hostname,
     8080,
   );
 
