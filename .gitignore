@@ -1,6 +1,6 @@
 .packages
 .dart_tool
-/database/connection.dart
+
 ./config.dart
 .vscode
 config.dart
