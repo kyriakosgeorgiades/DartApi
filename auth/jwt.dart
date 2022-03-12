@@ -1,18 +1,17 @@
 /// This file is handling all the functionalities related to JWT
+import 'package:dotenv/dotenv.dart';
 import 'package:jaguar_jwt/jaguar_jwt.dart';
-
-import '../config.dart';
 
 class JWT {
   /// Creating of a token with the [id] of the user
   /// Returning the created token
   String signToken(int id) {
     final claimSet = JwtClaim(
-        issuer: 'API Games',
+        issuer: env['ISSUER'],
         subject: '$id',
         issuedAt: DateTime.now(),
         maxAge: const Duration(hours: 24));
-    const String secret = Properties.jwtSecret;
+    final String secret = env['SECRET'];
     return issueJwtHS256(claimSet, secret);
   }
 }
@@ -22,7 +21,7 @@ class JWT {
 /// Returns [true] when it is valid
 /// On Expection of not valid token return [false]
 bool isValidToken(String token) {
-  const key = Properties.jwtSecret;
+  final key = env['SECRET'];
   try {
     verifyJwtHS256Signature(token, key);
     return true;

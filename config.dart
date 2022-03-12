@@ -1,4 +1,0 @@
-class Properties {
-  static const String jwtSecret =
-      '961BB500F085701E092DC00B5F289307ECF32CDC034177339A3A53078F857DA7';
-}

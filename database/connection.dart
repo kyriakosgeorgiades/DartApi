@@ -1,13 +1,13 @@
+import 'package:dotenv/dotenv.dart';
 import 'package:mysql1/mysql1.dart';
 import 'dart:async' show Future;
 
 class Mysql {
-  static String host =
-          'i54jns50s3z6gbjt.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
-      user = 'uhs4ben3uddktjwv',
-      password = 'a7z16zmvimbgmoa1',
-      db = 'xh9itjv2z2wexp2o';
-  static int port = 3306; //FILL VALUES
+  static String host = env['DB_HOSTNAME'],
+      user = env['DB_USERNAME'],
+      password = env['DB_PASSWORD'],
+      db = env['DATABASE'];
+  static int port = int.parse(env['DB_PORT']);
   Mysql();
 
   Future<MySqlConnection> getConnection() async {
