@@ -12,8 +12,8 @@ class GamesModel {
     try {
       var db = Mysql();
       dynamic conn = await db.getConnection();
-      var results =
-          await conn.query('select id_game, game_name, cover, year from games');
+      var results = await conn.query(
+          'select id_game, game_name, cover, year, file_name from games');
       Map<String, Map> games = {};
       // Adding all the values in a MAP inside the MAP with the name of the game
       // being the key of each new game entry to the map
@@ -24,7 +24,8 @@ class GamesModel {
           "id_game": row[0],
           "name": row[1],
           "cover": row[2].toString(),
-          "year": row[3]
+          "year": row[3],
+          "file_name": row[4]
         });
       }
       conn.close();
