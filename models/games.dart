@@ -92,13 +92,13 @@ class GamesModel {
   /// MYSQLExpection on an duplicated entry of the same game returns MAP of [message] and [error]
   /// Returns MAP [info] of the added game
   add(String name, String publisher, String cover, String description, int year,
-      int userID) async {
+      int userID, String fileName) async {
     try {
       var db = Mysql();
       dynamic conn = await db.getConnection();
       await conn.query(
-          'INSERT INTO games (game_name, cover, publisher, year, description, upload_date_time, id_user) VALUES(?,?,?,?,?,NOW(),?)',
-          [name, cover, publisher, year, description, userID]);
+          'INSERT INTO games (game_name, cover, publisher, year, description, upload_date_time, id_user, file_name) VALUES(?,?,?,?,?,NOW(),?,?)',
+          [name, cover, publisher, year, description, userID, fileName]);
       // Fetching the username of who added it
       var result =
           await conn.query('select username from users where id=?', [userID]);

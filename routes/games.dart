@@ -21,12 +21,20 @@ class Games {
     /// on TypeError catches error of wrong type of inputs given
     addGame(Request request) async {
       try {
+        print("I AM THE HEADERS");
+        print(request.headersAll);
         final payload = await request.readAsString();
         var data = json.decode(payload);
         var game = GamesModel();
         // Calling the model function to add the game in the database
-        var result = await game.add(data['name'], data['publisher'],
-            data['cover'], data['description'], data['year'], data['user_id']);
+        var result = await game.add(
+            data['name'],
+            data['publisher'],
+            data['cover'],
+            data['description'],
+            data['year'],
+            data['user_id'],
+            data['fileName']);
         // Setting the status based on the success of the model
         int statusCode = result['statusCode'];
         result.remove('statusCode');

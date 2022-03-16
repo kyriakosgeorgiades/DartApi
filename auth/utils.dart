@@ -6,6 +6,7 @@ import 'jwt.dart';
 
 // Middleware for CORS permissions
 Middleware handleCors() {
+  print("IN CORS");
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
