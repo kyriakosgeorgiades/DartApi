@@ -220,7 +220,7 @@ class GamesModel {
         // Inserting each review in the map
         for (var row in result) {
           String date = row[3].toString();
-          date = date.substring(0, 16);
+          date = date.substring(0, 10);
           reviews["${row[0]}"] = {};
           reviews["${row[0]}"].addAll({
             "rating": row[1],
