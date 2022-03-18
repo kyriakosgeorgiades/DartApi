@@ -61,7 +61,7 @@ class GamesModel {
             "cover": row[0].toString(),
             "publisher": row[2],
             "year": row[1],
-            "description": row[3],
+            "description": row[3].toString(),
             "date": date
           });
         }
