@@ -18,7 +18,10 @@ void main() async {
   app.get('/', (Request reques) async {
     String json = jsonEncode({
       'users': 'https://games-reviews-coursework.herokuapp.com/users/',
-      'games': 'https://games-reviews-coursework.herokuapp.com/games/'
+      'games': 'https://games-reviews-coursework.herokuapp.com/games/',
+      'game': 'https://games-reviews-coursework.herokuapp.com/games/<name>',
+      'reviews':
+          'https://games-reviews-coursework.herokuapp.com/games/<name>/reviews'
     });
     return Response.ok(json);
   });

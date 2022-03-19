@@ -21,7 +21,6 @@ class Games {
     /// on TypeError catches error of wrong type of inputs given
     addGame(Request request) async {
       try {
-        print("I AM THE HEADERS");
         print(request.headersAll);
         final payload = await request.readAsString();
         var data = json.decode(payload);
