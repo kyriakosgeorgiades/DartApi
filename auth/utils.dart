@@ -10,7 +10,8 @@ Middleware handleCors() {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-    'Access-Control-Allow-Headers': 'Origin, Content-Type, authorization',
+    'Access-Control-Allow-Headers':
+        'Origin, Content-Type, authorization, Access-Control-Allow-Headers, X-Requested-With, Accept, Access-Control-Request-Method, Access-Control-Request-Headers',
   };
 
   return createMiddleware(
