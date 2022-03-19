@@ -121,8 +121,8 @@ class GamesModel {
           'cover': row[2].toString(),
           'publisher': row[3],
           'year': row[4],
-          'description': row[5],
-          'added': date.toString(),
+          'description': row[5].toString(),
+          'added': date,
           'addedBy': addedBy,
           'statusCode': 201
         });
