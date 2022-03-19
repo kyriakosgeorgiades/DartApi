@@ -122,7 +122,7 @@ class GamesModel {
           'publisher': row[3],
           'year': row[4],
           'description': row[5],
-          'added': date,
+          'added': date.toString(),
           'addedBy': addedBy,
           'statusCode': 201
         });
