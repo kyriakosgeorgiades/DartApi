@@ -15,5 +15,5 @@ Install the plugin on Visual studio code "Dart". Install MySQL on your device if
 ```powershell
 cd georgiadek-sem2-api
 dart pub get
-dart run ./server.dart -> This is not required as its runned on the cloud. Use it for local testing
+dart run ./server.dart -> This is not required as its run on the cloud. Use it for local testing
 ```
