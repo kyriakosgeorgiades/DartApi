@@ -174,7 +174,7 @@ class GamesModel {
           [data['userID']]);
       for (var row in result) {
         var date = row[0].toString();
-        date = date.substring(0, 16);
+        date = date.substring(0, 10);
         data.addAll({
           "reviewer": username,
           "at": date,
