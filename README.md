@@ -2,6 +2,7 @@
 
 - [General info](#general-info)
 - [Setup](#setup)
+- [Methods](#methods)
 
 ## General Info
 
@@ -17,3 +18,74 @@ cd georgiadek-sem2-api
 dart pub get
 dart run ./server.dart -> This is not required as its run on the cloud. Use it for local testing
 ```
+
+## Methods
+
+### Users
+
+============================================================================================================
+
+`POST` <https://games-reviews-coursework.herokuapp.com/users> *Register new user*
+
+```json
+Body
+{
+    "username":"user1",
+    "password":"p455w0rd"
+}
+```
+
+`POST` <https://games-reviews-coursework.herokuapp.com/users/user> *Login user*
+
+```json
+Body
+{
+    "username":"user1",
+    "password":"p455w0rd"
+}
+```
+
+============================================================================================================
+
+### Games
+
+============================================================================================================
+
+`GET` <https://games-reviews-coursework.herokuapp.com/games> *View all games*
+
+`GET` <https://games-reviews-coursework.herokuapp.com/games/Lost%20Ark> *View a single game* ->
+***Headers: Authorization : Bearer token, authcheck : needAuth***
+
+`GET` <https://games-reviews-coursework.herokuapp.com/games/Lost%20Ark/reviews> *View reviews of a game:* ->
+***Headers: Authorization : Bearer token, authcheck : needAuth***
+
+`POST` <https://games-reviews-coursework.herokuapp.com/games> *Add a new game:* ->
+***Headers: Authorization : Bearer token, authcheck : needAuth***
+
+```json
+Body
+{
+    "name":"Test",
+    "publisher":"Coventry",
+    "description":"This game is so good! I love it",
+    "year":2022,
+    "user_id": 123,
+    "fileName": "test.png",
+    "cover": "base64String"
+}
+```
+
+`POST` <https://games-reviews-coursework.herokuapp.com/games/Lost%20Ark/reviews> *Add a review on a game* ->
+***Headers: Authorization : Bearer token, authcheck : needAuth***
+
+```json
+Body
+{
+    "userID":123,
+    "rate": 4,
+    "description": "It was a slow game. Not that much to play do not buy it!"
+
+}
+```
+
+============================================================================================================
