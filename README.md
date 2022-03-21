@@ -3,6 +3,7 @@
 - [General info](#general-info)
 - [Setup](#setup)
 - [Methods](#methods)
+- [Important](#important)
 
 ## General Info
 
@@ -89,3 +90,7 @@ Body
 ```
 
 =================================================================
+
+## General Info
+
+Since the app is hosted on a free service due to the inactivity the request will be a bit slow the first time untill it changes state from sleep to active. Please give it a few seconds to change a state when making the first request in a while!
