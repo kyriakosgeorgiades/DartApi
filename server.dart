@@ -16,14 +16,16 @@ void main() async {
   final port = int.parse(Platform.environment['PORT'] ?? '8085');
 
   app.get('/', (Request reques) async {
-    String json = jsonEncode({
+    Map<String, dynamic> urls = {
       'users': 'https://games-reviews-coursework.herokuapp.com/users/',
+      'user': 'https://games-reviews-coursework.herokuapp.com/users/user',
       'games': 'https://games-reviews-coursework.herokuapp.com/games/',
-      'game': 'https://games-reviews-coursework.herokuapp.com/games/<name>',
+      'game': 'https://games-reviews-coursework.herokuapp.com/games/Lost%20Ark',
       'reviews':
-          'https://games-reviews-coursework.herokuapp.com/games/<name>/reviews'
-    });
-    return Response.ok(json);
+          'https://games-reviews-coursework.herokuapp.com/games/Lost%20Ark/reviews'
+    };
+    String json = jsonEncode(urls);
+    return Response.ok(json, headers: {'Content-Type': 'application/json'});
   });
   app.mount('/games', Games().router);
   app.mount('/users', User().router);

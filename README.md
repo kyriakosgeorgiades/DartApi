@@ -5,7 +5,7 @@
 
 ## General Info
 
-This is the API for the mobile development course using dart. The API and MySQL server are both hosted on the cloud so there is no need for local configuration other than the configuration settings of the database connection. Due to this being a coursework and there is a chance the project would be run the `.env` file is included.
+This is the API for the mobile development course using dart. The API and MySQL server are both hosted on the cloud so there is no need for local configuration other than the configuration settings of the database connection. Due to this being a coursework and there is a chance the project would be run the `.env` file is included. The API is hosted on <https://games-reviews-coursework.herokuapp.com>
 
 ## Setup
 
